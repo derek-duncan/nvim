@@ -89,22 +89,19 @@
     nnoremap <C-l> <C-w>l
     nnoremap <C-j> <C-w>j
 
-  " Terminal settings
+  "Terminal settings
     tnoremap <Leader><ESC> <C-\><C-n>
 
   "Select pasted block
     nnoremap <expr> gV    "`[".getregtype(v:register)[0]."`]"
 
-  " Move to the previous buffer with gp
+  "Move to the previous buffer with gp
     nnoremap gp :bp<CR>
 
-  " Move to the next buffer with gn
+  "Move to the next buffer with gn
     nnoremap gn :bn<CR>
 
-  " List all possible buffers with gl
-    nnoremap gl :ls<CR>
-
-  " List all possible buffers with gb and accept a new buffer argument [1]
+  "List all possible buffers with gb and accept a new buffer argument [1]
     nnoremap gb :ls<CR>:b
 
 "==================================================================================================
