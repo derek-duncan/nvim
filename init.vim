@@ -78,6 +78,10 @@
     nnoremap gl <Plug>(easymotion-f)
     nnoremap gh <Plug>(easymotion-F)
 
+  "Move vertically by visual line
+    nnoremap j gj
+    nnoremap k gk
+
   "Yank Until End of Line
     map Y y$
 
@@ -93,7 +97,7 @@
     tnoremap <Leader><ESC> <C-\><C-n>
 
   "Select pasted block
-    nnoremap <expr> gV    "`[".getregtype(v:register)[0]."`]"
+    nnoremap gV `[v`]
 
   "Move to the previous buffer with gp
     nnoremap gp :bp<CR>
@@ -131,6 +135,15 @@
   "CtrlP
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlP'
+		let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+  "Airline tabline
+    let g:airline#extensions#tabline#enabled = 1
+
+  " After a re-source, fix syntax matching issues (concealing brackets):
+    if exists('g:loaded_webdevicons')
+      call webdevicons#refresh()
+    endif
 
 "==================================================================================================
 "Autocommands
