@@ -15,6 +15,7 @@
     Plug 'elixir-lang/vim-elixir'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'terryma/vim-multiple-cursors'
+    Plug 'mhartington/oceanic-next'
 
   call plug#end()
 
@@ -35,8 +36,8 @@
   "Theme
     colorscheme OceanicNext
     set background=dark
-    set linespace=10
-    set guifont=Hack:h16
+    set linespace=12
+    set guifont=Fura\ Code\ Light\ Nerd\ Font\ Complete:h16
     let g:airline_theme='oceanicnext'
   "Filetype
     filetype plugin indent on
@@ -70,9 +71,12 @@
   "NERDTree Open
     nnoremap <leader>nt :NERDTree<CR>
 
+  "Set NERDTree to current file dir
+    map <leader>r :NERDTreeFind<cr>
+
   "Easymotion Movements
-    nmap gl <Plug>(easymotion-f)
-    nmap gh <Plug>(easymotion-F)
+    nnoremap gl <Plug>(easymotion-f)
+    nnoremap gh <Plug>(easymotion-F)
 
   "Yank Until End of Line
     map Y y$
@@ -84,6 +88,9 @@
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
     nnoremap <C-j> <C-w>j
+
+  " Terminal settings
+    tnoremap <Leader><ESC> <C-\><C-n>
 
   "Select pasted block
     nnoremap <expr> gV    "`[".getregtype(v:register)[0]."`]"
