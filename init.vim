@@ -140,6 +140,9 @@
   "Airline tabline
     let g:airline#extensions#tabline#enabled = 1
 
+  "Just show the filename (no path) in the tab
+    let g:airline#extensions#tabline#fnamemod = ':t'
+
   " After a re-source, fix syntax matching issues (concealing brackets):
     if exists('g:loaded_webdevicons')
       call webdevicons#refresh()
@@ -148,3 +151,6 @@
 "==================================================================================================
 "Autocommands
   autocmd! BufWritePost * Neomake
+
+  "Make postcss files work with sass
+    autocmd BufRead,BufNewFile *.pcss set filetype=sass
