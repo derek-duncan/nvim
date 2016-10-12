@@ -16,6 +16,8 @@
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'mhartington/oceanic-next'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Numkil/ag.nvim'
 
   call plug#end()
 
@@ -55,6 +57,9 @@
 
   "Disable highlighted search
     set nohlsearch
+
+  "Ignore folders in search and grep
+    set wildignore+=node_modules/**
 
 "==================================================================================================
 "Mappings
@@ -108,6 +113,21 @@
   "List all possible buffers with gb and accept a new buffer argument [1]
     nnoremap gb :ls<CR>:b
 
+  "Quickfix open
+    nnoremap <Leader>q :copen<CR>
+
+  "Quickfix close
+    nnoremap <Leader>Q :cclose<CR>
+
+  "Use tab to forward cycle for deoplete
+    inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+  "Use tab to backward cycle for deoplete
+    inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+  "This unsets the 'last search pattern' register by hitting return
+  nnoremap <CR> :noh<CR><CR>
+
 "==================================================================================================
 "Plugin Options
   if (has("termguicolors"))
@@ -130,6 +150,7 @@
     let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01232456789!@#$%^&*()'
 
   "NeoMake
+    let g:neomake_javascript_eslint_exe = '/Users/derekduncan/code/curadora/booking-site/node_modules/.bin/eslint'
     let g:neomake_javascript_enabled_makers = ['eslint']
 
   "CtrlP
@@ -143,10 +164,16 @@
   "Just show the filename (no path) in the tab
     let g:airline#extensions#tabline#fnamemod = ':t'
 
+  " Use deoplete.
+    let g:deoplete#enable_at_startup = 1
+
   " After a re-source, fix syntax matching issues (concealing brackets):
     if exists('g:loaded_webdevicons')
       call webdevicons#refresh()
     endif
+
+  "Ag start searching from project root
+    let g:ag_working_path_mode="r"
 
 "==================================================================================================
 "Autocommands
