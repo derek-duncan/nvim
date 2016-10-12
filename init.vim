@@ -18,6 +18,7 @@
     Plug 'mhartington/oceanic-next'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Numkil/ag.nvim'
+    Plug 'Raimondi/delimitMate'
 
   call plug#end()
 
