@@ -81,8 +81,8 @@
     map <leader>r :NERDTreeFind<cr>
 
   "Easymotion Movements
-    nnoremap gl <Plug>(easymotion-f)
-    nnoremap gh <Plug>(easymotion-F)
+    nmap gl <Plug>(easymotion-f)
+    nmap gh <Plug>(easymotion-F)
 
   "Move vertically by visual line
     nnoremap j gj
