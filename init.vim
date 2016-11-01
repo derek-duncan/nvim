@@ -10,7 +10,6 @@
     Plug 'scrooloose/nerdcommenter'
     Plug 'easymotion/vim-easymotion'
     Plug 'Yggdroot/indentLine'
-    Plug 'bronson/vim-trailing-whitespace'
     Plug 'tpope/vim-surround'
     Plug 'elixir-lang/vim-elixir'
     Plug 'ctrlpvim/ctrlp.vim'
@@ -19,6 +18,10 @@
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Numkil/ag.nvim'
     Plug 'Raimondi/delimitMate'
+    Plug 'slashmili/alchemist.vim'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'ntpeters/vim-better-whitespace'
+    Plug 'janko-m/vim-test'
 
   call plug#end()
 
@@ -37,13 +40,18 @@
   "Linewrap Indicator
     set colorcolumn=100
   "Theme
-    colorscheme OceanicNext
+    colorscheme gruvbox
     set background=dark
     set linespace=12
     set guifont=Fura\ Code\ Light\ Nerd\ Font\ Complete:h16
     let g:airline_theme='oceanicnext'
+    if (has("termguicolors"))
+      set termguicolors
+    endif
   "Filetype
     filetype plugin indent on
+  "Cursor
+    set cursorcolumn
 
 "==================================================================================================
 "Preferences
@@ -129,6 +137,13 @@
   "This unsets the 'last search pattern' register by hitting return
   nnoremap <CR> :noh<CR><CR>
 
+  "VimTest Mappings
+  nmap <silent> <leader>t :TestNearest<CR>
+  nmap <silent> <leader>T :TestFile<CR>
+  nmap <silent> <leader>a :TestSuite<CR>
+  nmap <silent> <leader>l :TestLast<CR>
+  nmap <silent> <leader>g :TestVisit<CR>
+
 "==================================================================================================
 "Plugin Options
   if (has("termguicolors"))
@@ -160,10 +175,10 @@
 		let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
   "Airline tabline
-    let g:airline#extensions#tabline#enabled = 1
+    "let g:airline#extensions#tabline#enabled = 1
 
   "Just show the filename (no path) in the tab
-    let g:airline#extensions#tabline#fnamemod = ':t'
+    "let g:airline#extensions#tabline#fnamemod = ':t'
 
   " Use deoplete.
     let g:deoplete#enable_at_startup = 1
@@ -175,6 +190,12 @@
 
   "Ag start searching from project root
     let g:ag_working_path_mode="r"
+
+  "Alchemist
+    let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
+
+  "VimTest
+    let test#strategy = "neovim"
 
 "==================================================================================================
 "Autocommands
