@@ -5,6 +5,8 @@
     Plug 'ryanoasis/vim-devicons'
     Plug 'neomake/neomake'
     Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'morhetz/gruvbox'
     Plug 'flazz/vim-colorschemes'
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdcommenter'
@@ -16,12 +18,13 @@
     Plug 'terryma/vim-multiple-cursors'
     Plug 'mhartington/oceanic-next'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'Numkil/ag.nvim'
+    Plug 'mileszs/ack.vim'
     Plug 'Raimondi/delimitMate'
     Plug 'slashmili/alchemist.vim'
     Plug 'airblade/vim-gitgutter'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'janko-m/vim-test'
+    Plug 'elzr/vim-json'
 
   call plug#end()
 
@@ -35,21 +38,38 @@
   set tabstop=2
   set shiftwidth=2
   set softtabstop=2
+
   "Convert Tabs to Spaces
     set expandtab
+
   "Linewrap Indicator
     set colorcolumn=100
+
   "Theme
-    colorscheme gruvbox
+  "
+    "Overall options
+    set t_Co=256
+    set termguicolors
     set background=dark
+
+    "Text
     set linespace=12
     set guifont=Fura\ Code\ Light\ Nerd\ Font\ Complete:h16
-    let g:airline_theme='oceanicnext'
-    if (has("termguicolors"))
-      set termguicolors
-    endif
+
+    "Colorscheme
+    colorscheme gruvbox
+
+    "Specific theme options
+      let g:airline_theme='tomorrow'
+      "
+      "enable italics, disabled by default
+      "let g:oceanic_next_terminal_italic = 1
+      "enable bold, disabled by default
+      "let g:oceanic_next_terminal_bold = 1
+
   "Filetype
     filetype plugin indent on
+
   "Cursor
     set cursorcolumn
 
@@ -135,21 +155,24 @@
     inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
   "This unsets the 'last search pattern' register by hitting return
-  nnoremap <CR> :noh<CR><CR>
+    nnoremap <CR> :noh<CR><CR>
 
   "VimTest Mappings
-  nmap <silent> <leader>t :TestNearest<CR>
-  nmap <silent> <leader>T :TestFile<CR>
-  nmap <silent> <leader>a :TestSuite<CR>
-  nmap <silent> <leader>l :TestLast<CR>
-  nmap <silent> <leader>g :TestVisit<CR>
+    nmap <silent> <leader>t :TestNearest<CR>
+    nmap <silent> <leader>T :TestFile<CR>
+    nmap <silent> <leader>a :TestSuite<CR>
+    nmap <silent> <leader>l :TestLast<CR>
+    nmap <silent> <leader>g :TestVisit<CR>
+
+  "Don't autojump to ack result
+    cnoreabbrev Ack Ack!
+    cnoreabbrev Ag Ack!
+
+  "Search for word under cursor
+    nnoremap <Leader>s :Ack!<Space>
 
 "==================================================================================================
 "Plugin Options
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-
   "NERDTree
     let g:NERDTreeMapHelp="<leader>nth"
     let g:NERDTreeShowHidden=1
@@ -188,14 +211,19 @@
       call webdevicons#refresh()
     endif
 
-  "Ag start searching from project root
-    let g:ag_working_path_mode="r"
+  "Use Ag with Ack
+    if executable('ag')
+      let g:ackprg = 'ag --vimgrep'
+    endif
 
   "Alchemist
     let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
 
   "VimTest
     let test#strategy = "neovim"
+
+  "Disable hidden JSON quotes
+    let g:vim_json_syntax_conceal = 0
 
 "==================================================================================================
 "Autocommands
