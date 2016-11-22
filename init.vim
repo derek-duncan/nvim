@@ -19,12 +19,13 @@
     Plug 'mhartington/oceanic-next'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'mileszs/ack.vim'
-    Plug 'Raimondi/delimitMate'
+    Plug 'jiangmiao/auto-pairs'
     Plug 'slashmili/alchemist.vim'
     Plug 'airblade/vim-gitgutter'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'janko-m/vim-test'
     Plug 'elzr/vim-json'
+    Plug 'mustache/vim-mustache-handlebars'
 
   call plug#end()
 
@@ -46,10 +47,11 @@
     set colorcolumn=100
 
   "Theme
-  "
     "Overall options
     set t_Co=256
     set termguicolors
+    colorscheme gruvbox
+    "colorscheme OceanicNext
     set background=dark
 
     "Text
@@ -189,7 +191,7 @@
     let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01232456789!@#$%^&*()'
 
   "NeoMake
-    let g:neomake_javascript_eslint_exe = '/Users/derekduncan/code/curadora/booking-site/node_modules/.bin/eslint'
+    let g:neomake_javascript_eslint_exe = '/usr/local/bin/eslint'
     let g:neomake_javascript_enabled_makers = ['eslint']
 
   "CtrlP
