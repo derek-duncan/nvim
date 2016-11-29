@@ -26,6 +26,7 @@
     Plug 'janko-m/vim-test'
     Plug 'elzr/vim-json'
     Plug 'mustache/vim-mustache-handlebars'
+    Plug 'ap/vim-css-color'
 
   call plug#end()
 
