@@ -44,19 +44,22 @@
     set guifont=Hack:h16
 
     "Colorscheme
-    let g:one_termcolors=256
     colorscheme one
+    let g:one_termcolors=256
     set background=dark
 
     "Specific theme options
       "let g:airline_theme='tomorrow'
       let g:airline_theme='one'
-      "
+
       "enable italics, disabled by default
       let g:oceanic_next_terminal_italic = 1
       let g:one_allow_italics = 1
       "enable bold, disabled by default
       let g:oceanic_next_terminal_bold = 1
+
+    "Italics
+      highlight Comment cterm=italic
 
   "General
     syntax enable
@@ -79,9 +82,6 @@
 
   "Cursor
     set cursorcolumn
-
-  "Highlight
-    highlight Comment cterm=italic
 
 "==================================================================================================
 "Preferences
