@@ -27,19 +27,46 @@
     Plug 'elzr/vim-json'
     Plug 'mustache/vim-mustache-handlebars'
     Plug 'ap/vim-css-color'
+    Plug 'rakr/vim-one'
 
   call plug#end()
 
 "==================================================================================================
 "Formatting Options
-  syntax enable
-  syntax on
-  set smartcase
-  set number
-  set autoindent
-  set tabstop=2
-  set shiftwidth=2
-  set softtabstop=2
+  "TrueColors
+    if (has("termguicolors"))
+      set termguicolors
+    endif
+
+  "Theme
+    "Text
+    set linespace=12
+    set guifont=Hack:h16
+
+    "Colorscheme
+    let g:one_termcolors=256
+    colorscheme one
+    set background=dark
+
+    "Specific theme options
+      "let g:airline_theme='tomorrow'
+      let g:airline_theme='one'
+      "
+      "enable italics, disabled by default
+      let g:oceanic_next_terminal_italic = 1
+      let g:one_allow_italics = 1
+      "enable bold, disabled by default
+      let g:oceanic_next_terminal_bold = 1
+
+  "General
+    syntax enable
+    syntax on
+    set smartcase
+    set number
+    set autoindent
+    set tabstop=2
+    set shiftwidth=2
+    set softtabstop=2
 
   "Convert Tabs to Spaces
     set expandtab
@@ -47,34 +74,14 @@
   "Linewrap Indicator
     set colorcolumn=100
 
-  "Theme
-    "Overall options
-    set t_Co=256
-    set termguicolors
-    colorscheme gruvbox
-    "colorscheme OceanicNext
-    set background=dark
-
-    "Text
-    set linespace=12
-    set guifont=Fura\ Code\ Light\ Nerd\ Font\ Complete:h16
-
-    "Colorscheme
-    colorscheme gruvbox
-
-    "Specific theme options
-      let g:airline_theme='tomorrow'
-      "
-      "enable italics, disabled by default
-      "let g:oceanic_next_terminal_italic = 1
-      "enable bold, disabled by default
-      "let g:oceanic_next_terminal_bold = 1
-
   "Filetype
     filetype plugin indent on
 
   "Cursor
     set cursorcolumn
+
+  "Highlight
+    highlight Comment cterm=italic
 
 "==================================================================================================
 "Preferences
