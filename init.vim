@@ -26,43 +26,16 @@
     Plug 'janko-m/vim-test'
     Plug 'elzr/vim-json'
     Plug 'mustache/vim-mustache-handlebars'
-    Plug 'ap/vim-css-color'
+    "Plug 'ap/vim-css-color'
     Plug 'rakr/vim-one'
+    Plug 'tkhren/vim-fake'
 
   call plug#end()
 
 "==================================================================================================
 "Formatting Options
-  "TrueColors
-    if (has("termguicolors"))
-      set termguicolors
-    endif
-
-  "Theme
-    "Text
-    set linespace=12
-    set guifont=Hack:h16
-
-    "Colorscheme
-    colorscheme one
-    let g:one_termcolors=256
-    set background=dark
-
-    "Specific theme options
-      "let g:airline_theme='tomorrow'
-      let g:airline_theme='one'
-
-      "enable italics, disabled by default
-      let g:oceanic_next_terminal_italic = 1
-      let g:one_allow_italics = 1
-      "enable bold, disabled by default
-      let g:oceanic_next_terminal_bold = 1
-
-    "Italics
-      highlight Comment cterm=italic
 
   "General
-    syntax enable
     syntax on
     set smartcase
     set number
@@ -82,6 +55,34 @@
 
   "Cursor
     set cursorcolumn
+
+  "TrueColors
+    if (has("termguicolors"))
+      set termguicolors
+    endif
+
+  "Text
+    set linespace=12
+    set guifont=Hack:h16
+
+  "Specific theme options
+    "let g:airline_theme='tomorrow'
+    let g:airline_theme='one'
+    "enable true colors
+      let g:one_termcolors=256
+
+    "enable italics, disabled by default
+      let g:oceanic_next_terminal_italic = 1
+      let g:one_allow_italics = 1
+    "enable bold, disabled by default
+      let g:oceanic_next_terminal_bold = 1
+
+    "Colorscheme
+      set background=dark
+      colorscheme one
+
+  "Italic Comments
+    highlight Comment cterm=italic gui=italic
 
 "==================================================================================================
 "Preferences
@@ -211,7 +212,7 @@
     "let g:airline#extensions#tabline#enabled = 1
 
   "Just show the filename (no path) in the tab
-    "let g:airline#extensions#tabline#fnamemod = ':t'
+    let g:airline#extensions#tabline#fnamemod = ':t'
 
   " Use deoplete.
     let g:deoplete#enable_at_startup = 1
@@ -237,7 +238,13 @@
 
 "==================================================================================================
 "Autocommands
-  autocmd! BufWritePost * Neomake
+  augroup config
+    autocmd!
 
-  "Make postcss files work with sass
-    autocmd BufRead,BufNewFile *.pcss set filetype=sass
+    "Linting
+      autocmd BufWritePost * Neomake
+
+    "Make postcss files work with sass
+      autocmd BufRead,BufNewFile *.pcss set filetype=sass
+      autocmd BufRead,BufNewFile *.css set filetype=sass
+  augroup END
