@@ -26,9 +26,10 @@
     Plug 'janko-m/vim-test'
     Plug 'elzr/vim-json'
     Plug 'mustache/vim-mustache-handlebars'
-    "Plug 'ap/vim-css-color'
     Plug 'rakr/vim-one'
-    Plug 'tkhren/vim-fake'
+    Plug 'mxw/vim-jsx'
+    Plug 'othree/javascript-libraries-syntax.vim'
+    Plug 'othree/yajs.vim'
 
   call plug#end()
 
@@ -63,7 +64,7 @@
 
   "Text
     set linespace=12
-    set guifont=Hack:h16
+    set guifont=Knack\ Nerd\ Font:h14
 
   "Specific theme options
     "let g:airline_theme='tomorrow'
@@ -235,6 +236,9 @@
 
   "Disable hidden JSON quotes
     let g:vim_json_syntax_conceal = 0
+
+  "Allow JSX in normal JS files
+    let g:jsx_ext_required = 0
 
 "==================================================================================================
 "Autocommands
