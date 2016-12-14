@@ -29,7 +29,8 @@
     Plug 'rakr/vim-one'
     Plug 'mxw/vim-jsx'
     Plug 'othree/javascript-libraries-syntax.vim'
-    Plug 'othree/yajs.vim'
+    "Plug 'othree/yajs.vim'
+    Plug 'pangloss/vim-javascript'
 
   call plug#end()
 
@@ -44,6 +45,8 @@
     set tabstop=2
     set shiftwidth=2
     set softtabstop=2
+    set foldmethod=manual
+    set lazyredraw
 
   "Convert Tabs to Spaces
     set expandtab
@@ -54,8 +57,9 @@
   "Filetype
     filetype plugin indent on
 
-  "Cursor
-    set cursorcolumn
+  "Cursor (performance settings)
+    set nocursorline
+    set nocursorcolumn
 
   "TrueColors
     if (has("termguicolors"))
@@ -239,6 +243,15 @@
 
   "Allow JSX in normal JS files
     let g:jsx_ext_required = 0
+
+  "Setup library syntaxes
+    let g:used_javascript_libs = 'jquery,lo-dash,react,ramda,chai'
+
+  "Enable Flow syntax
+    let g:javascript_plugin_flow = 1
+
+  "Speed up indentLine
+    let g:indentLine_faster = 1
 
 "==================================================================================================
 "Autocommands
