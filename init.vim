@@ -11,7 +11,6 @@
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/nerdcommenter'
     Plug 'easymotion/vim-easymotion'
-    Plug 'Yggdroot/indentLine'
     Plug 'tpope/vim-surround'
     Plug 'elixir-lang/vim-elixir'
     Plug 'ctrlpvim/ctrlp.vim'
@@ -29,8 +28,12 @@
     Plug 'rakr/vim-one'
     Plug 'mxw/vim-jsx'
     Plug 'othree/javascript-libraries-syntax.vim'
-    "Plug 'othree/yajs.vim'
     Plug 'pangloss/vim-javascript'
+    Plug 'jaawerth/neomake-local-eslint-first'
+    "Plug 'flowtype/vim-flow'
+
+    "Plug 'othree/yajs.vim'
+    "Plug 'Yggdroot/indentLine'
 
   call plug#end()
 
@@ -205,7 +208,7 @@
     let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01232456789!@#$%^&*()'
 
   "NeoMake
-    let g:neomake_javascript_eslint_exe = '/usr/local/bin/eslint'
+    "let g:neomake_javascript_eslint_exe = '/usr/local/bin/eslint'
     let g:neomake_javascript_enabled_makers = ['eslint']
 
   "CtrlP
@@ -250,8 +253,8 @@
   "Enable Flow syntax
     let g:javascript_plugin_flow = 1
 
-  "Speed up indentLine
-    let g:indentLine_faster = 1
+  "Flow
+    "let g:flow#autoclose = 1
 
 "==================================================================================================
 "Autocommands
