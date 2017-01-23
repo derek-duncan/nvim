@@ -9,16 +9,17 @@
     Plug 'morhetz/gruvbox'
     Plug 'flazz/vim-colorschemes'
     Plug 'scrooloose/nerdtree'
-    Plug 'scrooloose/nerdcommenter'
-    Plug 'easymotion/vim-easymotion'
+    Plug 'tpope/vim-commentary'
+    Plug 'matze/vim-move'
+    Plug 'justinmk/vim-sneak'
     Plug 'tpope/vim-surround'
     Plug 'elixir-lang/vim-elixir'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'mhartington/oceanic-next'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'mileszs/ack.vim'
     Plug 'jiangmiao/auto-pairs'
+    Plug 'mileszs/ack.vim'
     Plug 'slashmili/alchemist.vim'
     Plug 'airblade/vim-gitgutter'
     Plug 'ntpeters/vim-better-whitespace'
@@ -43,6 +44,7 @@
   "General
     syntax on
     set smartcase
+    set relativenumber
     set number
     set autoindent
     set tabstop=2
@@ -127,10 +129,6 @@
   "Set NERDTree to current file dir
     map <leader>r :NERDTreeFind<cr>
 
-  "Easymotion Movements
-    nmap gl <Plug>(easymotion-f)
-    nmap gh <Plug>(easymotion-F)
-
   "Move vertically by visual line
     nnoremap j gj
     nnoremap k gk
@@ -202,11 +200,6 @@
       autocmd FileType nerdtree set relativenumber
     augroup END
 
-  "Easymotion
-    let g:EasyMotion_do_mapping = 0
-    let g:EasyMotion_leader_key = ''
-    let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01232456789!@#$%^&*()'
-
   "NeoMake
     "let g:neomake_javascript_eslint_exe = '/usr/local/bin/eslint'
     let g:neomake_javascript_enabled_makers = ['eslint']
@@ -222,10 +215,10 @@
   "Just show the filename (no path) in the tab
     let g:airline#extensions#tabline#fnamemod = ':t'
 
-  " Use deoplete.
+  "Use deoplete.
     let g:deoplete#enable_at_startup = 1
 
-  " After a re-source, fix syntax matching issues (concealing brackets):
+  "After a re-source, fix syntax matching issues (concealing brackets):
     if exists('g:loaded_webdevicons')
       call webdevicons#refresh()
     endif
@@ -255,6 +248,9 @@
 
   "Flow
     "let g:flow#autoclose = 1
+
+  "Move
+    let g:move_key_modifier = 'C'
 
 "==================================================================================================
 "Autocommands
