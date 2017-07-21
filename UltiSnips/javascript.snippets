@@ -1,0 +1,228 @@
+snippet new_container_component "React HOC Component"
+// @flow
+import React from 'react';
+import compose from 'recompose/compose';
+import type { ${1:componentName}Props } from 'components/${2:$1}';
+import ${3:$1} from 'components/${4:$1}';
+
+export type ${5:$1}ContainerProps = {
+} & ${6:$1}Props;
+
+const enhancer = compose();
+
+class ${7:$1}Container extends React.PureComponent {
+	props: ${8:$1}ContainerProps;
+	state: {};
+
+	state = {};
+
+	render() {
+		const { ...props } = this.props;
+		$0
+		return (
+			<${9:$1} {...props} />
+		);
+	}
+}
+
+const Enhanced: ReactComponent<${10:$1}ContainerProps> = enhancer(${11:$1}Container);
+
+export default Enhanced;
+endsnippet
+
+snippet new_pure_component "React Pure Component"
+// @flow
+import React from 'react';
+
+export type ${1:componentName}Props = {
+};
+
+class ${2:$1} extends React.PureComponent {
+	props: ${3:$1}Props;
+	state: {};
+
+	state = {};
+
+	render() {
+		const { ...props } = this.props;
+		return (
+			$0
+		);
+	}
+}
+
+export default ${4:$1};
+endsnippet
+
+snippet new_functional_component "React Stateless Component"
+// @flow
+import React from 'react';
+
+export type ${1:componentName}Props = {
+};
+
+const ${2:$1} = ({
+	...props,
+}: ${3:$1}Props) => {
+	return (
+		$0
+	);
+};
+
+export default ${4:$1};
+endsnippet
+
+snippet it() "Jest it() block"
+it('should ${1:testDescription}', () => {
+	expect($0).toBe();
+});
+endsnippet
+
+snippet import_print_ast "Apollo AST Printer"
+import { printAST } from 'apollo-client';
+endsnippet
+
+snippet import_type_apollo_operation_component "Flow Type for Apollo graphql()"
+import type { OperationComponent } from 'react-apollo';
+endsnippet
+
+snippet import_type_redux_connector "Flow Type for Rexux connect()"
+import type { Connector } from 'react-redux';
+endsnippet
+
+snippet new_apollo_enhancer_component "React Apollo HOC"
+// @flow
+import { graphql, gql } from 'react-apollo';
+import type { OperationComponent } from 'react-apollo';
+
+const query = gql``;
+
+type Response = {};
+
+type InputProps = {};
+
+const mapPropsToOptions = () => ({
+	fetchPolicy: 'cache-and-network',
+});
+
+const mapDataToProps = ({
+	data: {},
+	ownProps: {},
+}) => {
+	return {};
+};
+
+type Props = {};
+
+const with${1:enhancerName}: OperationComponent<
+	Response,
+	InputProps,
+	Props
+> = graphql(query, {
+	options: mapPropsToOptions,
+	props: mapDataToProps,
+});
+
+export { mapPropsToOptions, mapDataToProps, query };
+export default with${1:enhancerName};
+endsnippet
+
+snippet new_redux_enhancer_component "React Redux HOC"
+// @flow
+import { connect } from 'react-redux';
+import type { Connector } from 'react-redux';
+
+const mapStateToProps = state => ({
+});
+
+const mapDispatchToProps = dispatch => ({
+});
+
+type Props = {
+};
+
+const with${1:enhancerName}: Connector<any, Props> = connect(
+	mapStateToProps,
+	mapDispatchToProps
+);
+
+export { mapDispatchToProps, mapStateToProps };
+export default with$1;
+endsnippet
+
+snippet new_component_test "React Component Test"
+import React from 'react';
+import shallow from 'services/test-helpers/shallow';
+import sel from 'services/test-helpers/sel';
+import ${1:Component} from '../$1';
+
+const setup = nextProps => {
+	const props = {
+		...nextProps,
+	};
+
+	const wrapper = shallow(<$1 {...props} />);
+
+	return {
+		props,
+		wrapper,
+	};
+};
+
+it('should render with defaults', () => {
+	const { wrapper } = setup();
+	expect(wrapper).toMatchSnapshot();
+});
+
+it('$0', () => {
+	const { wrapper } = setup();
+
+	expect(wrapper).toBe();
+});
+endsnippet
+
+snippet new_apollo_enhancer_test "React Apollo Test"
+import { printAST } from 'apollo-client';
+import { mapPropsToOptions, mapDataToProps, query } from '../$0';
+
+it('should have a known query shape', () => {
+	expect(printAST(query)).toMatchSnapshot();
+});
+
+// options
+it('', () => {
+	const options = mapPropsToOptions();
+
+	expect().toBe();
+});
+
+// data
+it('', () => {
+	const mockedData = {
+		data: {},
+		ownProps: {},
+	};
+
+	const props = mapDataToProps(mockedData);
+
+	expect().toBe();
+});
+endsnippet
+
+snippet new_redux_enhancer_test "React Redux Test"
+import { initialState } from 'services/$1/reducer';
+import { mapStateToProps, mapDispatchToProps } from '../$2';
+
+it('should map the state to props correctly', () => {
+	const props = mapStateToProps({ $1: initialState });
+
+	expect(props).toBe();
+});
+
+it('should map the actions to props', () => {
+	const mockedDispatch = jest.fn();
+	const props = mapDispatchToProps(mockedDispatch);
+
+	expect(props).toBe();
+});
+endsnippet

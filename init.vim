@@ -7,10 +7,10 @@
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'morhetz/gruvbox'
-    Plug 'flazz/vim-colorschemes'
+    " Plug 'flazz/vim-colorschemes'
     Plug 'scrooloose/nerdtree'
     Plug 'tpope/vim-commentary'
-    Plug 'matze/vim-move'
+    " Plug 'matze/vim-move'
     Plug 'justinmk/vim-sneak'
     Plug 'tpope/vim-surround'
     Plug 'elixir-lang/vim-elixir'
@@ -22,7 +22,7 @@
     Plug 'mileszs/ack.vim'
     Plug 'slashmili/alchemist.vim'
     Plug 'airblade/vim-gitgutter'
-    Plug 'ntpeters/vim-better-whitespace'
+    " Plug 'ntpeters/vim-better-whitespace'
     Plug 'janko-m/vim-test'
     Plug 'elzr/vim-json'
     Plug 'mustache/vim-mustache-handlebars'
@@ -31,10 +31,20 @@
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'pangloss/vim-javascript'
     Plug 'jaawerth/neomake-local-eslint-first'
-    "Plug 'flowtype/vim-flow'
+    Plug 'fleischie/vim-styled-components'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'wokalski/autocomplete-flow'
+    Plug 'SirVer/ultisnips'
+    Plug 'djoshea/vim-autoread'
+    Plug 'sbdchd/neoformat'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'chrisbra/csv.vim'
+    " Plug 'Yggdroot/indentLine'
+    Plug 'exitface/synthwave.vim'
+    Plug 'joshdick/onedark.vim'
+    Plug 'sheerun/vim-polyglot'
 
-    "Plug 'othree/yajs.vim'
-    "Plug 'Yggdroot/indentLine'
+    " Plug 'othree/yajs.vim'
 
   call plug#end()
 
@@ -43,8 +53,10 @@
 
   "General
     syntax on
+    set shell=zsh
+    set mouse=a
     set smartcase
-    set relativenumber
+    set norelativenumber
     set number
     set autoindent
     set tabstop=2
@@ -52,19 +64,27 @@
     set softtabstop=2
     set foldmethod=manual
     set lazyredraw
+    set list
+    set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
+    "Live subsitute
+    set inccommand=nosplit
+
+  "Window
+    set splitbelow
 
   "Convert Tabs to Spaces
     set expandtab
 
   "Linewrap Indicator
-    set colorcolumn=100
+    set colorcolumn=80
 
   "Filetype
     filetype plugin indent on
 
   "Cursor (performance settings)
-    set nocursorline
+    set cursorline
     set nocursorcolumn
+		set guicursor=a:block-blinkwait200-blinkon100-blinkoff100-Cursor
 
   "TrueColors
     if (has("termguicolors"))
@@ -73,7 +93,10 @@
 
   "Text
     set linespace=12
-    set guifont=Knack\ Nerd\ Font:h14
+    if has('gui_running')
+      set guifont=FuraCode\ Nerd\ Font:h12
+      " set guifont=Knack\ Nerd\ Font:h12
+    endif
 
   "Specific theme options
     "let g:airline_theme='tomorrow'
@@ -82,13 +105,11 @@
       let g:one_termcolors=256
 
     "enable italics, disabled by default
-      let g:oceanic_next_terminal_italic = 1
       let g:one_allow_italics = 1
-    "enable bold, disabled by default
-      let g:oceanic_next_terminal_bold = 1
 
     "Colorscheme
       set background=dark
+      " colorscheme solarized
       colorscheme one
 
   "Italic Comments
@@ -96,9 +117,6 @@
 
 "==================================================================================================
 "Preferences
-  "Autoread changes in buffer
-    set autoread
-
   "No Swap Files
     set noswapfile
 
@@ -125,6 +143,9 @@
 
   "NERDTree Open
     nnoremap <leader>nt :NERDTree<CR>
+
+  "Zoom current pane
+    nnoremap <leader>z <C-w>|
 
   "Set NERDTree to current file dir
     map <leader>r :NERDTreeFind<cr>
@@ -165,12 +186,6 @@
   "Quickfix close
     nnoremap <Leader>Q :cclose<CR>
 
-  "Use tab to forward cycle for deoplete
-    inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-  "Use tab to backward cycle for deoplete
-    inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-
   "This unsets the 'last search pattern' register by hitting return
     nnoremap <CR> :noh<CR><CR>
 
@@ -195,19 +210,23 @@
     let g:NERDTreeShowHidden=1
     let g:NERDTreeWinPos = "right"
     let g:NERDTreeIgnore = ["\.DS_Store$", "files"]
-  "Force relative line #'s in NERDTree
-    augroup NERDTree
-      autocmd FileType nerdtree set relativenumber
-    augroup END
+
+  "Neoformat
+    let g:neoformat_javascript_prettier = {
+                              \ 'exe': '/Users/derekduncan/.config/yarn/global/node_modules/.bin/prettier',
+                              \ 'args': ['--single-quote', '--trailing-comma es5'],
+                              \ 'stdin': 1,
+                              \ 'no_append': 1,
+                              \ }
+    let g:neoformat_enabled_javascript = ['prettier']
 
   "NeoMake
-    "let g:neomake_javascript_eslint_exe = '/usr/local/bin/eslint'
     let g:neomake_javascript_enabled_makers = ['eslint']
 
   "CtrlP
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlP'
-		let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+		let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|_build\|deps'
 
   "Airline tabline
     "let g:airline#extensions#tabline#enabled = 1
@@ -217,6 +236,7 @@
 
   "Use deoplete.
     let g:deoplete#enable_at_startup = 1
+    let g:deoplete#enable_smart_case = 1
 
   "After a re-source, fix syntax matching issues (concealing brackets):
     if exists('g:loaded_webdevicons')
@@ -247,15 +267,26 @@
     let g:javascript_plugin_flow = 1
 
   "Flow
-    "let g:flow#autoclose = 1
+    let g:flow#enable = 0
+    let g:flow#autoclose = 1
+    let g:flow#omnifunc = 1
+    let g:flow#flowpath = "~/code/itp/desktop/node_modules/.bin/flow"
+    let g:flow#errjmp = 0
 
   "Move
     let g:move_key_modifier = 'C'
+
+  "Gray indent line indicator
+    let g:indentLine_enabled = 0
+    let g:indentLine_color_gui = '#3f3f3f'
 
 "==================================================================================================
 "Autocommands
   augroup config
     autocmd!
+    "Formatting
+      autocmd BufWritePre *.js Neoformat
+      autocmd BufWritePre *.jsx Neoformat
 
     "Linting
       autocmd BufWritePost * Neomake
