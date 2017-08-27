@@ -101,11 +101,13 @@
   "Specific theme options
     "let g:airline_theme='tomorrow'
     let g:airline_theme='one'
+    " let g:airline_theme='quantum'
     "enable true colors
       let g:one_termcolors=256
 
-    "enable italics, disabled by default
+    "enable nice fonts, disabled by default
       let g:one_allow_italics = 1
+      let g:enable_bold_font = 1
 
     "Colorscheme
       set background=dark
@@ -209,7 +211,7 @@
     let g:NERDTreeMapHelp="<leader>nth"
     let g:NERDTreeShowHidden=1
     let g:NERDTreeWinPos = "right"
-    let g:NERDTreeIgnore = ["\.DS_Store$", "files"]
+    let g:NERDTreeIgnore = ["\.DS_Store$"]
 
   "Neoformat
     let g:neoformat_javascript_prettier = {
@@ -226,7 +228,7 @@
   "CtrlP
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlP'
-		let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|_build\|deps'
+		let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|_build\|deps\|lib\|dist\|coverage'
 
   "Airline tabline
     "let g:airline#extensions#tabline#enabled = 1
